@@ -1,0 +1,183 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" type="image/png" href="{% static 'main/img/favicon.ico' %}"/>
+
+    <link rel="stylesheet" type="text/css" href="{% static 'main/css/reset.css' %}"  />
+    <link rel="stylesheet" type="text/css" href="{% static 'main/css/index.css' %}"  />
+    <link rel="stylesheet" type="text/css" href="{% static 'main/css/media.css' %}"  />
+    <link rel="stylesheet" type="text/css" href="{% static 'main/css/fontawesome/css/all.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'main/css/fotorama-4.6.4/fotorama.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'main/css/slick/slick.css' %}" />
+    <!-- <link rel="stylesheet" type="text/css" href="{% static 'main/css/slick/slick.less' %}" /> -->
+    <link rel="stylesheet" type="text/css" href="{% static 'main/css/slick/slick-theme.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'main/css/dist/css/datepicker.min.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'main/css/lightbox2/css/lightbox.css' %}" />
+    
+    <script src="{% static 'main/js/lazy/lazyload.js' %}"></script> <!-- #здесь подгружается lazy# -->
+    <!-- <title>CarRent</title> -->
+    {% block description %}{% endblock %}
+    {% block openg %}{% endblock %}
+    {% block jsonld %}{% endblock %}
+    <title>{% block title %}{%endblock%}</title>
+    <script> </script>
+</head>
+<body>
+    <header>
+        <div class="carrent-and-logo">
+            <a href="{% url 'index' %}">
+                <div class="CarRentLogo"></div>
+            </a>
+
+            <div class="divlogo">
+                <a href="login_registr.html" class="fab fa-vk fa-3x"></a>
+                <a href="" class="fab fa-viber fa-3x"></a>
+                <a href="" class="fab fa-whatsapp fa-3x"></a>
+            </div>
+        </div>
+
+        <div id="block2">
+            <nav>
+                <div class="button-item" itemscope itemtype="http://schema.org/SiteNavigationElement">
+                    <a itemprop="url" class="btn-1" href="{% url 'catalog' %}">Каталог</a>
+                    <a itemprop="url" href="{% url 'Rentcondition' %}" class="btn-1">Условия</a>
+                    <a itemprop="url" href="{% url 'contact' %}" class="btn-1">Контакты</a>
+                    <a itemprop="url" href="{% url 'reviews' %}" class="btn-1">Отзывы</a>
+                    <a itemprop="url" href="{% url 'pay' %}" class="btn-1">Оплата</a>
+                </div>
+            </nav>
+        </div>
+
+        <div id="block3">
+            <a href="login_auth.html">
+                <i class="fas fa-user-circle fa-3x"></i>
+                <figcaption>Войти</figcaption>
+            </a>
+        </div>
+
+        <div id="block4">
+            <div class="phone">
+                <i class="fas fa-phone-alt fa-2x "></i>
+                <p>+79241628365</p>
+            </div>
+
+            <button class="Buttonrequest">Оставить заявку</button>
+
+        </div>
+    </header>
+    <header class="mobile_header">
+        <div id="block4">
+            <div class="phone">
+                <i class="fas fa-phone-alt fa-2x "></i>
+                <p>+79241628365</p>
+            </div>
+
+            <button class="Buttonrequest">Оставить заявку</button>
+
+        </div>
+        <div class="carrent-and-logo">
+            <a href="{% url 'index' %}">
+                <div class="CarRentLogo"></div>
+            </a>
+        </div>
+        <div id="block3">
+            <a href="login_auth.html">
+                <i class="fas fa-user-circle fa-3x"></i>
+            </a>
+        </div>
+
+        <nav class="mobile-menu">
+            <input type="checkbox" id="checkbox" class="mobile-menu__checkbox">
+            <label for="checkbox" class="mobile-menu__btn">
+                <div class="mobile-menu__icon"></div>
+            </label>
+            <div class="mobile-menu__container">
+                <ul class="mobile-menu__list">
+                    <li class="mobile-menu__item"><a href="{% url 'catalog' %}" class="mobile-menu__link">Каталог</a></li>
+                    <li class="mobile-menu__item"><a href="{% url 'Rentcondition' %}" class="mobile-menu__link">Условия</a></li>
+                    <li class="mobile-menu__item"><a href="{% url 'contact' %}" class="mobile-menu__link">Контакты</a></li>
+                    <li class="mobile-menu__item"><a href="{% url 'reviews' %}" class="mobile-menu__link">Отзывы</a></li>
+                    <li class="mobile-menu__item"><a href="{% url 'pay' %}" class="mobile-menu__link">Оплата</a></li>
+                    <li class="mobile-menu__item"><a href="login_order.html" class="fas fa-user-circle fa-1x"></a><a
+                            href="login_auth.html" mobile-menu__link">Войти</a></li>
+                    <button class="Buttonrequest">Оставить заявку</button>
+                    <li class="mobile-menu__item"><a class="mobile-menu__link">+79241346928</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+    <footer itemscope itemtype="http://schema.org/PostalAddress">
+        <meta itemprop="addressCountry" content="Россия" />
+        <meta itemprop="addressLocality" content="Иркутск" />
+        <meta itemprop="streetAddress" content="Ленина, 11" />
+        <div class="carrent-and-logo">
+            <a href="{% url 'index' %}">
+                <div class="CarRentLogo"></div>
+            </a>
+
+            <div class="divlogo">
+                <a href="" class="fab fa-vk fa-3x"></a>
+                <a href="" class="fab fa-viber fa-3x"></a>
+                <a href="" class="fab fa-whatsapp fa-3x"></a>
+            </div>
+
+            <div id="block5">
+                <div class="phonefooter">
+                    <i class="fas fa-phone-alt fa-2x "></i>
+                    <aside itemprop="telephone">+79241628365</aside>
+                </div>
+                <div id="mail">
+                    <i class="fas fa-envelope fa-2x"></i>
+                    <aside itemprop="email">carrent@mail.com</aside>
+                </div>
+            </div>
+        </div>
+
+        <div class="links">
+            <a href="pay.html">Оплата</a>
+            <a href="{% url 'contact' %}">Контакты</a>
+            <a href="{% url 'catalog' %}">Каталог</a>
+        </div>
+
+        <div class="links">
+            <a href="{% url 'reviews' %}">Отзывы</a>
+            <a href="{% url 'Rentcondition' %}">Условия</a>
+            <a href="{% url 'start_admin' %}">О нас</a>
+        </div>
+
+        <div class="social">
+            <div class="Share">
+                <h2>Расскажите о нас &nbsp;</h2>
+                <i class="fas fa-share-alt fa-3x"></i>
+            </div>
+
+            <div itemscope itemtype="http://schema.org/WPSideBar" class="divlogo">
+                <a itemprop="name" href="https://vk.com" class="fab fa-vk fa-3x"></a>
+                <a itemprop="name" href="https://www.viber.com" class="fab fa-viber fa-3x"></a>
+                <a itemprop="name" href="https://www.whatsapp.com/" class="fab fa-whatsapp fa-3x"></a>
+                <a itemprop="name" href="https://telegram.org" class="fab fa-telegram fa-3x"></a>
+            </div>
+        </div>
+    </footer>
+    
+    <script src="{% static 'main/js/lightbox2/js/jquery-1.8.3.min.js' %}"></script>
+    <script src="{% static 'main/js/slick/slick.min.js' %}"></script>
+    <script src="{% static 'main/js/script_slider.js' %}"></script>
+    <script src="{% static 'main/js/fotorama.js' %}"></script>
+    <script src="{% static 'main/js/dist/js/datepicker.min.js' %}"></script>
+    <script src="{% static 'main/js/lightbox2/js/lightbox.js' %}"></script>
+    <script src="{% static 'main/js/goup/jquery.goup.js' %}"></script>
+    <script src="{% static 'main/js/main.js' %}"></script> <!-- #здесь подгружается lazy# -->
+
+</body>
+
+</html>

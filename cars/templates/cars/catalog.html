@@ -1,0 +1,99 @@
+{% extends 'main/pattern.html' %}
+{% load static %}
+{%block title%}
+Список категорий авто CarRent
+{%endblock%}
+{% block description %}
+<meta name="description" content="
+Аренда для автомобилей ваших целей. Большой и разнообразный ассортимент транспортных средств.  
+Круглосуточная аренда авто. Наши телефоны +79241323456 +79249846134. E-mail: infocarrent@mail.ru. Веб-сайт: CarRent.ru г. Иркутск. Адрес нашего офиса: Иркутск, ул. Ленина 11 CarRent. 
+Услуги по аренде автомобилей разных категорий (легковые, грузовые, автобусы). 
+Аренда авто разных категорий CarRent Иркутск.">
+{% endblock %}
+{% block openg %}
+        <meta property="og:title" content="Каталог CarRent" />
+        <meta property="og:description" content="Аренда для автомобилей ваших целей. Большой и разнообразный ассортимент транспортных средств."/>
+        <meta property="og:site_name" content="Аренда автомобилей CarRent Иркутск" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="http://maksmez.beget.tech/catalog/" />
+        <meta property="og:image" content="http://maksmez.beget.tech/static/main/img/slider/autorent.jpg" />
+{% endblock %}
+{% block jsonld %}
+<script type='application/ld+json'> 
+{
+  "@context": "http://www.schema.org",
+  "@type": "WebSite",
+  "name": "Каталог CarRent",
+  "alternateName": "Аренда автомобилей CarRent Иркутск",
+  "url": "http://maksmez.beget.tech/catalog/"
+}
+ </script>
+{% endblock %}
+{% block content %}
+   <main>
+      <div id="main-container">
+         <div class="bread2">
+            <ul class="breadcrumbs">
+               <li class="breadcrumbs-item">
+                  <a class="breadcrumbs-link" href="{% url 'index' %}">Главная</a>
+               </li>
+               <li class="breadcrumbs-item">
+                  <span class="breadcrumbs-link  current">Каталог</span>
+               </li>
+            </ul>
+         </div>
+
+         <!-- Аренда для ваших целей -->
+         <h1 class="MainHeader">Выберите интересующую вас категорию</h2>
+            <div class="RentCategory">
+               <div class="Types">
+                  {%for x in catalogget%}
+                  <a href="{% url 'carlist' x.id %}">
+                     <figure>
+                        <img src="{{x.Icon.url}}" alt="{{x.NameCat}}" width="70%">
+                        <figcaption>{{x.NameCat}}</figcaption>
+                     </figure>
+                  </a>
+                  {%endfor%}
+                  <!-- <a href="">
+                     <figure>
+                        <img src="./logo_pictures/truck.png" alt="Грузовые" width="70%">
+                        <figcaption>Грузовые</figcaption>
+                     </figure>
+                  </a>
+
+                  <a href="">
+                     <figure>
+                        <img src="./logo_pictures/bus.png" alt="Автобусы" width="70%">
+                        <figcaption>Автобусы</figcaption>
+                     </figure>
+                  </a>
+
+                  <a href="">
+                     <figure>
+                        <img src="./logo_pictures/evacuator.png" alt="Эвакуаторы" width="70%">
+                        <figcaption>Эвакуаторы</figcaption>
+                     </figure>
+                  </a>
+
+                  <a href="">
+                     <figure>
+                        <img src="./logo_pictures/car3.png" alt="Для мероприятий" width="70%">
+                        <figcaption>Для мероприятий</figcaption>
+                     </figure>
+                  </a>
+
+                  <a href="">
+                     <figure>
+                        <img src="./logo_pictures/excavator.png" alt="Спецтехника" width="70%">
+                        <figcaption>Спецтехника</figcaption>
+                     </figure>
+                  </a> -->
+               </div>
+            </div>
+
+
+
+      </div>
+   </main>
+   {% endblock %}

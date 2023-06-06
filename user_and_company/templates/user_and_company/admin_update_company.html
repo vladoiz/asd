@@ -1,0 +1,55 @@
+{% extends 'my_admin/pattern.html' %}
+{% load static %}
+{%block title%}
+Изменить компанию №{{company.Name}}
+{%endblock%}
+{% block content %}
+        <section class="col-12">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{% url 'start_admin' %}">Главная</a></li>
+
+                    <li class="breadcrumb-item"><a href="{% url 'admin_companies' %}">Все компании</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Изменение компании</li>
+                </ol>
+            </nav>
+            <h1>Изменение компании</h1>
+            <form action="{% url 'admin_update_company' company.id %}" method="POST" class="form-row border border-dark p-3">
+                {% csrf_token %}
+                <div class="form-row col-lg-6 col-12 p-lg-2 pr-0">
+                    <label for="name" class="col-sm-4 col-12 col-form-label">Название</label>
+                    <div class="col-sm-8 col-12">
+                        <input type="text" class="form-control mb-2" id="name" name="Name" value="{{company.Name}}" required>
+                    </div>
+                    <label for="email" class="col-sm-4 col-12 col-form-label">E-mail</label>
+                    <div class="col-sm-8 col-12">
+                        <input type="email" class="form-control mb-2" id="email" name="Email" value="{{company.Email}}" required>
+                    </div>
+                    <label for="tel" class="col-sm-4 col-12 col-form-label">Телефон</label>
+                    <div class="col-sm-8 col-12">
+                        <input type="tel" class="form-control mb-2" id="tel" name="Phone" value="{{company.Phone}}" required>
+                    </div>
+                    <label for="comment" class="col-sm-4 col-12 col-form-label">Комментарий</label>
+                    <div class="col-sm-8 col-12">
+                        <textarea class="mb-2 form-control" rows="3" name="Note">{{company.Note}}</textarea>
+                    </div>
+                </div>
+                <div class="form-row col-lg-6 col-12 p-lg-2 pr-0 align-content-start">
+                    <label for="contact" class="col-sm-4 col-12 col-form-label">Контактное лицо</label>
+                    <div class="col-sm-8 col-12">
+                        <input type="text" class="form-control mb-2" id="contact" name="ContactFIO" value="{{company.ContactFIO}}" required>
+                    </div>
+                    <label for="secemail" class="col-sm-4 col-12 col-form-label">E-mail</label>
+                    <div class="col-sm-8 col-12">
+                        <input type="email" class="form-control mb-2" id="secemail" name="ContactEmail" value="{{company.ContactEmail}}" required>
+                    </div>
+                    <label for="tel2" class="col-sm-4 col-12 col-form-label">Телефон</label>
+                    <div class="col-sm-8 col-12">
+                        <input type="tel" class="form-control mb-2" id="tel2" name="ContactPhone" value="{{company.ContactPhone}}" required>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary p-2 col-lg-3 col-12  my-3">Изменить</button>
+            </form>
+        </section>
+        <wbr>
+{%endblock%}

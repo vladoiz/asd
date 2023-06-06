@@ -1,0 +1,78 @@
+{% extends 'my_admin/pattern.html' %}
+{% load static %}
+{%block title%}
+Сотрудник №{{admin_add_worker.id}}
+{%endblock%}
+{% block content %}
+
+<section class="col-12">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{% url 'start_admin' %}">Главная</a></li>
+
+            <li class="breadcrumb-item"><a href="{% url 'admin_companies' %}">Все компании</a></li>
+            <li class="breadcrumb-item"><a href="{% url 'admin_company' worker.Company_id %}">Компания {{worker.Company}}</a></li>
+            <li class="breadcrumb-item"><a href="{% url 'admin_workers' worker.Company_id %}">Сотрудники</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Сотрудник №{{worker.id}}</li>
+        </ol>
+    </nav>
+    <h1>Сотрудник №{{worker.id}}</h1>
+    <form class="form-row border border-dark p-3">
+        <div class="form-row col-lg-6 col-12 p-lg-2 pr-0">
+            <label for="name" class="col-sm-4 col-12 col-form-label">Имя</label>
+            <div class="col-sm-8 col-12">
+                <input type="text" class="form-control mb-2" id="name" placeholder="{{worker.Name}}" disabled>
+            </div>
+            <label for="fname" class="col-sm-4 col-12 col-form-label">Фамилия</label>
+            <div class="col-sm-8 col-12">
+                <input type="text" class="form-control mb-2" id="fname" placeholder="{{worker.Fname}}" disabled>
+            </div>
+            <label for="tel" class="col-sm-4 col-12 col-form-label">Телефон</label>
+            <div class="col-sm-8 col-12">
+                <input type="tel" class="form-control mb-2" id="tel" placeholder="{{worker.Phone}}" disabled>
+            </div>
+        </div>
+        <div class="form-row col-lg-6 col-12 p-lg-2 pr-0">
+
+            <label for="mail" class="col-sm-4 col-12 col-form-label">E-mail</label>
+            <div class="col-sm-8 col-12">
+                <input type="email" class="form-control mb-2" id="mail" placeholder="{{worker.Email}}" disabled>
+            </div>
+            <label for="comment" class="col-sm-4 col-12 col-form-label">Комментарий</label>
+            <div class="col-sm-8 col-12">
+                <textarea class="mb-2 form-control" rows="3" disabled>{{worker.Comment}}</textarea>
+            </div>
+        </div>
+        <div class="col-12 mt-4">
+            <a href="{% url 'admin_update_worker' worker.Company_id worker.id %}"
+                class="btn btn-primary mb-3 p-2 col-lg-3 col-md-12 col-sm-12">Редактировать</a>
+            <button type="submit" class="btn btn-primary mb-3 p-2 col-lg-3 col-md-12 col-sm-12">Сменить пароль</button>
+            <a href="" class="btn btn-danger mb-3 p-2 col-lg-3 col-md-12 col-sm-12" data-toggle="modal"
+                data-target="#exampleModal">Удалить</a>
+        </div>
+    </form>
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"
+        data-backdrop="static">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body text-center">
+                    <form method="POST" action="{% url 'admin_delete_worker' worker.Company_id worker.id %}">
+                        {% csrf_token %}
+                        <h5 class="modal-title pb-4" id="exampleModalLabel">Удалить сотрудника №{{worker.id}}?</h5>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-danger">Удалить</button>
+                            <button type="" class="btn btn-info" data-dismiss="modal" aria-label="Close">Отмена</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<wbr>
+{% endblock %}

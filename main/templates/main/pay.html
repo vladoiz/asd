@@ -1,0 +1,77 @@
+{% extends 'main/pattern.html' %}
+{% load static %}
+{% block title %}
+Условия оплаты CarRent
+{% endblock %}
+{% block description %}
+<meta name="description" content="
+Условия оплаты компании CarRent. 50% предоплата всей стоимости проката транспортного средства. 
+Оплатить можно любым удобным для Вас способом: наличными, банковской дебетовой или кредитной картой, банковским переводом. Аренда авто разных категорий CarRent Иркутск.">
+{% endblock %}
+{% block openg %}
+        <meta property="og:title" content="Условия оплаты в компании CarRent" />
+        <meta property="og:description" content="Условия оплаты компании CarRent. 50% предоплата всей стоимости проката транспортного средства. 
+Оплатить можно любым удобным для Вас способом: наличными, банковской дебетовой или кредитной картой, банковским переводом. Аренда авто разных категорий CarRent Иркутск." />
+        <meta property="og:site_name" content="Аренда автомобилей CarRent Иркутск" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="http://maksmez.beget.tech/pay/" />
+        <meta property="og:image" content="http://maksmez.beget.tech/static/main/img/slider/autorent.jpg" />
+{% endblock %}
+{% block jsonld %}
+<script type='application/ld+json'> 
+{
+  "@context": "http://www.schema.org",
+  "@type": "WebSite",
+  "name": "Условия оплаты в компании CarRent",
+  "alternateName": "Аренда автомобилей CarRent Курск",
+  "url": ""
+}
+ </script>
+{% endblock %}
+{% block content %}
+   <main>
+      <div id="main-container">
+         <div class="bread2">
+            <ul class="breadcrumbs">
+               <li class="breadcrumbs-item">
+                  <a class="breadcrumbs-link" href="{% url 'index' %}">Главная</a>
+               </li>
+               <li class="breadcrumbs-item">
+                  <span class="breadcrumbs-link  current">Оплата</span>
+               </li>
+            </ul>
+         </div>
+         <h1>Варианты оплаты</h1>
+         <h2 class="MainHeader">Наличными</h2>
+         <div class="cashcondition">
+            <p>Вы можете осуществить оплату наличными в нашем офисе</p>
+         </div>
+         <h2 class="MainHeader">Безналичный расчет</h2>
+         <div class="cashcondition">
+            <p>Безналичная оплата банковской картой в офисе. Принимаются карты следующих платежных систем:</p>
+         </div>
+         <div class="divlogo">
+            <img src="{% static 'main/img/logo_pictures/mir-logo.svg' %}" alt="mir" width="20%" height="99%">
+            <img src="{% static 'main/img/logo_pictures/master.svg' %}" alt="mastercard" width="15%">
+            <img src="{% static 'main/img/logo_pictures/maestro.svg' %}" alt="maestro" width="15%">
+         </div>
+         <h2 class="MainHeader">Есть вопросы? Оставьте нам сообщение и мы Вам перезвоним</h2>
+         <div class="Feedback">
+            <h2 class="MainHeader">Написать нам письмо</h2>
+            <form action="{% url 'contact_add_feedback'%}" method="POST" class="form_mail">
+               {% csrf_token %}
+               <div class="input_mail">
+                  <p><input type="text" placeholder="Ваше имя" name="Name"  required></p>
+                  <p><input type="text" placeholder="Телефон или E-mail" name="PhoneEmail" required></p>
+                  <p><input type="submit" value="Отправить"></p>
+               </div>
+               <div class="textarea_mail">
+                  <textarea placeholder="Сообщение" name="Message" required maxlength="250"></textarea>
+                  <p><input type="submit" value="Отправить"></p>
+               </div>
+            </form>
+         </div>
+      </div>
+   </main>
+   {% endblock %}
+

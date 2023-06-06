@@ -1,0 +1,110 @@
+{% extends 'main/pattern.html' %}
+{% load static %}
+{% block title %}
+Аренда любых транспортных средств в Курск - CarRent
+{% endblock %}
+{% block description %}
+<meta name="description" content="
+Курская компания CarRent предлагает большой выбор автомобилей разных категорий в аренду от легковых до грузовых или автобусов. 
+Прокат автомобилей на выгодных условиях. Низкие цены и простые условия аренды. Аренда авто разных категорий CarRent Курск.">
+{% endblock %}
+{% block openg %}
+        <meta property="og:title" content="Главная CarRent" />
+        <meta property="og:description" content="Курская компания CarRent предлагает большой выбор автомобилей разных категорий в аренду от легковых до грузовых или автобусов. Прокат автомобилей на выгодных условиях. Низкие цены и простые условия аренды. Аренда авто разных категорий CarRent Иркутск." />
+        <meta property="og:site_name" content="Аренда автомобилей CarRent Курск" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="" />
+        <meta property="og:image" content="" />
+{% endblock %}
+
+{% block jsonld %}
+<script type='application/ld+json'> 
+{
+  "@context": "http://www.schema.org",
+  "@type": "Organization",
+  "name": "Аренда автомобилей CarRent Курск",
+  "url": "",
+  "logo": "",
+  "image": "",
+  "description": "Курская компания CarRent предлагает большой выбор автомобилей разных категорий в аренду от легковых до грузовых или автобусов. \nПрокат автомобилей на выгодных условиях. Низкие цены и простые условия аренды. Аренда авто разных категорий CarRent Иркутск.",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Курск, улица Радищева 66",
+    "addressLocality": "Курск"
+  },
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "telephone": "+792412345678"
+  }
+}
+ </script>
+{% endblock %}
+
+
+
+{% block content %}
+   <main>
+
+      <div id="main-container">
+         <!-- слайдер -->
+         <div class="fr">
+            <div class="fotorama" data-autoplay="true" data-loop="true" data-width="100%">
+               <a href="{% static 'main/img/slider/autorent.jpg' %}"></a>
+               <a href="{% static 'main/img/slider/autorent2.jpg' %}"></a>
+               <a href="{% static 'main/img/slider/autorent3.jpg' %}"></a>
+            </div>
+         </div>
+
+         <!-- Аренда для ваших целей -->
+         <h1 class="MainHeader">Аренда для ваших целей</h1>
+         <div class="RentCategory">
+            <div class="Types">
+
+               {%for x in catalogget%}
+                  <a href="{% url 'carlist' x.id %}">
+                     <figure>
+                        <img src="{{x.Icon.url}}" alt="{{x.NameCat}}" width="70%">
+                        <figcaption>{{x.NameCat}}</figcaption>
+                     </figure>
+                  </a>
+                  {%endfor%}
+            </div>
+         </div>
+
+         <h2 class="MainHeader">Отзывы о нас</h2>
+         <div class="box_slider_review">
+            <div class="Cards slider">
+               {% for r in reviews %}
+               <div class="CardBig">
+                  <div class="review">
+                     <div class="name_and_date_review">
+                        <h2>{{r.ClientID.Name}} {{r.ClientID.Fname}}</h2>
+                        <h3>{{r.Date}}</h3>
+                     </div>
+                     <div>
+                        <p>{{r.Review}}</p>
+                     </div>
+                  </div>
+               </div>
+               {% endfor %}
+            </div>
+         </div>
+         <a class="Allreviews" href="{% url 'reviews'   %}">Смотреть все</a>
+         <h2 class="MainHeader">Наш офис на карте</h2>
+         <div class="Map">
+            <div id="info">
+               <p>г. Курск</p>
+               <p>ул. Радищева, 66</p>
+               <wbr>
+               <p>Пн-Вс с 10:00 до 20:00</p>
+               <wbr>
+               <p>Телефон: +79992145678</p>
+            </div>
+            <div class="yamap">
+               <div style="position:relative;overflow:hidden;"><a href="https://yandex.ru/maps/8/kursk/?utm_medium=mapframe&utm_source=maps" style="color:#eee;font-size:12px;position:absolute;top:0px;">Курск</a><a href="https://yandex.ru/maps/8/kursk/house/ulitsa_radishcheva_66/Z08Ydw9pTUAPQFtrfXt1cnlibA==/?ll=36.190039%2C51.743407&utm_medium=mapframe&utm_source=maps&z=18.13" style="color:#eee;font-size:12px;position:absolute;top:14px;">Улица Радищева, 66 — Яндекс Карты</a><iframe src="https://yandex.ru/map-widget/v1/?ll=36.190039%2C51.743407&mode=whatshere&whatshere%5Bpoint%5D=36.189613%2C51.743470&whatshere%5Bzoom%5D=17&z=18.13" width="100%" height="450" frameborder="1" allowfullscreen="true" style="position:relative;"></iframe></div>
+
+            </div>
+         </div>
+      </div>
+   </main>
+{% endblock %}

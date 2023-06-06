@@ -1,0 +1,111 @@
+{% extends 'main/pattern.html' %}
+{% load static %}
+{% block title %}
+Все отзывы клиентов CarRent
+{% endblock %}
+{% block description %}
+<meta name="description" content="
+Отзывы о компании CarRent. Здравствуйте! Всем своим знакомым рекомендую эту компанию. Все документы оформляются быстро, 
+а условия аренды простые и доступны каждому водителю. Посмотреть все отзывы можно на нашем сайте: CarRent.ru. Аренда авто разных категорий CarRent Иркутск">
+{% endblock %}
+{% block openg %}
+        <meta property="og:title" content="Отзывы о компании CarRent" />
+        <meta property="og:description" content="Здравствуйте! Всем своим знакомым рекомендую эту компанию. Все документы оформляются быстро, 
+а условия аренды простые и доступны каждому водителю. Посмотреть все отзывы можно на нашем сайте: CarRent.ru. Аренда авто разных категорий CarRent Иркутск" />
+        <meta property="og:site_name" content="Аренда автомобилей CarRent Иркутск" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="http://maksmez.beget.tech/reviews/" />
+        <meta property="og:image" content="http://maksmez.beget.tech/static/main/img/slider/autorent.jpg" />
+{% endblock %}
+{% block jsonld %}
+<script type='application/ld+json'> 
+{
+  "@context": "http://www.schema.org",
+  "@type": "WebSite",
+  "name": "Отзывы о компании CarRent",
+  "alternateName": "Аренда автомобилей CarRent Иркутск",
+  "url": "http://maksmez.beget.tech/reviews/"
+}
+ </script>
+{% endblock %}
+{% block content %}
+<div id="main-container">
+   <div class="bread2">
+      <ul class="breadcrumbs">
+         <li class="breadcrumbs-item">
+            <a class="breadcrumbs-link" href="index.html">Главная</a>
+         </li>
+         <li class="breadcrumbs-item">
+            <span class="breadcrumbs-link  current">Отзывы</span>
+         </li>
+      </ul>
+   </div>
+
+   <div class="qreview">
+      <h1>Все отзывы о нас</h1>
+      <a href="">Добавить отзыв <i class="fas fa-comment-dots fa-1x"></i> </a>
+      <a class="fas fa-plus"></a>
+   </div>
+   
+   {%for x in reviewget%}
+   <div class="BoxReview_big">
+      <div class="boxreview">
+         <div itemscope="" itemtype="http://schema.org/Review" class="content_review">
+	        <meta itemprop="datePublished" content="{{x.Date}}" />
+            <meta itemprop="name" content="CarRent">
+            <link itemprop="url" href="http://maksmez.beget.tech/">
+ <!--            <meta itemprop="url" content="http://maksmez.beget.tech/"> -->
+            <div itemprop="itemReviewed" itemscope itemtype="https://schema.org/Organization">
+		        <meta itemprop="name" content="CarRent"/>
+		        <meta itemprop="address" content="г.Иркутск"/>
+		        <meta itemprop="telephone" content="8 (495) 281-54-75" />
+	        </div>
+            <div itemprop="author" itemscope="" itemtype="http://schema.org/Person" class="name_and_date">
+                <span itemprop="name">{{x.ClientID.Name}}</span> <span itemprop="familyName">{{x.ClientID.Fname}}</span></p></span>
+               <p>{{x.Date}}</p>
+            </div>
+            <div class="textreview">
+               <p itemprop="reviewBody">{{ x.Review }}</p>
+            </div>
+            <div class="btn_open">
+               <a class="open_photo" href="{% static 'main/img/logo_pictures/review.jpg' %}" rel="lightbox-two">Открыть фото</a>
+            </div>
+         </div>
+      </div>
+   </div>
+
+   {% endfor %}
+
+
+   <nav class="nav_pag">
+      <ul class="pagination">
+          {% if is_paginated %}
+          {% if page_obj.has_previous %}
+          <li class="pagination-item ">
+              <a href="?page={{ page_obj.previous_page_number }}">&#171;</a>
+          </li>
+          {% endif %}
+
+          {% for num in page_obj.paginator.page_range %}
+          {% if num == page_obj.number %}
+          <li class="pagination-item pg-active">
+              <a href="#">{{ num }}</a>
+          </li>
+          {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %} 
+              <li class="pagination-item ">
+              <a href="?page={{ num }}">{{ num }}</a>
+              </li>
+              {% endif %}
+              {% endfor %}
+
+              {% if page_obj.has_next %}
+              <li class="pagination-item">
+                  <a href="?page={{ page_obj.next_page_number }}">&#187;</a>
+              </li>
+              {% endif %}
+          {% endif %}
+      </ul>
+  </nav>
+
+</div>
+{% endblock %}

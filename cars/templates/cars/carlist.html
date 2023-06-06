@@ -1,0 +1,267 @@
+{% extends 'main/pattern.html' %}
+{% load static %}
+{%block title%}
+Категория {{cat.NameCat}} - список авто
+{%endblock%}
+{% block description %}
+<meta name="description" content="
+Арендовать авто из категории {{cat.NameCat|lower}} быстро и дешево в Иркутске. Круглосуточная аренда авто. Наши телефоны +79241323456 +79249846134. E-mail: infocarrent@mail.ru. Веб-сайт: CarRent.ru г. Иркутск. Адрес нашего офиса: Иркутск, ул. Ленина 11 CarRent. 
+Услуги по аренде автомобилей разных категорий (легковые, грузовые, автобусы). Аренда авто разных категорий CarRent Иркутск.">
+{% endblock %}
+{% block openg %}
+        <meta property="og:title" content="Список автомобилей из категории {{cat.NameCat|lower }} CarRent" />
+        <meta property="og:description" content="Арендовать авто из категории {{cat.NameCat|lower }} быстро и дешево в Иркутске. Круглосуточная аренда авто. Наши телефоны +79241323456 +79249846134. E-mail: infocarrent@mail.ru. Веб-сайт: CarRent.ru г. Иркутск. Адрес нашего офиса: Иркутск, ул. Ленина 11 CarRent."/>
+        <meta property="og:site_name" content="Аренда автомобилей CarRent Иркутск" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="http://maksmez.beget.tech/catalog/category_{{cat.id}}/" />
+        <meta property="og:image" content="http://maksmez.beget.tech/static/main/img/slider/autorent.jpg" />
+{% endblock %}
+{% block jsonld %}
+<script type='application/ld+json'> 
+{
+  "@context": "http://www.schema.org",
+  "@type": "WebSite",
+  "name": "Список автомобилей из категории {{cat.NameCat|lower }} CarRent",
+  "alternateName": "Аренда автомобилей CarRent Иркутск",
+  "url": "http://maksmez.beget.tech/catalog/category_{{cat.id}}/"
+}
+ </script>
+{% endblock %}
+{% block content %}
+<div id="main-container">
+   <div class="bread2">
+      <ul class="breadcrumbs">
+         <li class="breadcrumbs-item">
+            <a class="breadcrumbs-link" href="{% url 'index' %}">Главная</a>
+         </li>
+         <li class="breadcrumbs-item">
+            <a class="breadcrumbs-link" href="{% url 'catalog' %}">Каталог</a>
+         </li>
+         <li class="breadcrumbs-item">
+            <span class="breadcrumbs-link  current">{{cat.NameCat}}</span>
+         </li>
+      </ul>
+   </div>
+   <h1>{{cat.NameCat}}</h1>
+   <div class="boxcarfilter">
+      <div class="filtercar">
+         <form>
+            <div>
+               <h2 class="MainHeader">Фильтры</h2>
+               <label>Коробка передач</label>
+               <p>
+                  <select>
+                     <option>Автомат</option>
+                  </select>
+               </p>
+               <label>Двигатель</label>
+               <p>
+                  <select>
+                     <option>Бензин</option>
+                  </select>
+               </p>
+               <label>Кузов</label>
+               <p>
+                  <select>
+                     <option>Седан</option>
+                  </select>
+               </p>
+               <label>Привод</label>
+               <p>
+                  <select>
+                     <option>Передний</option>
+                  </select>
+               </p>
+               
+            </div>
+            <div class="buttonfilter">
+               <a href="" class="selectcar">Выбрать</a>
+               <a href="" class="selectcar">Сбросить</a>
+            </div>
+         </form>
+      </div>
+      <div class="mobile_filter">
+         <form class="filter_param">
+            <p class="sort_card">Сортировка
+               <select class="select_sort">
+                  <option>&#8593; цена</option>
+                  <option>&#8595; цена</option>
+                  <option>популярность</option>
+                  <option>наименование</option>
+               </select>
+            </p>
+            
+            <a href="" class="filter_button" id="button_hide1"
+            onclick="diplay_hide('#block_id');return false;">Фильтр</a>
+            <a href="" class="fas fa-filter" id="button_hide2"
+            onclick="diplay_hide('#block_id');return false;"></a>
+            <p class="numer_card"><span>Показать по</span>
+               <select>
+                  <option>20</option>
+                  <option>30</option>
+                  <option>50</option>
+               </select>
+            </p>
+         </form>
+      </div>
+      <div class="mobile_filter_input" id="block_id" style="display: none;">
+         <form>
+            <div class="inputs_mobile">
+               <h2 class="MainHeader">Фильтры</h2>
+               <p>
+                  <label>Коробка передач</label>
+                  <select>
+                     <option>Автомат</option>
+                  </select>
+               </p>
+               <p>
+                  <label>Двигатель</label>
+                        <select>
+                           <option>Бензин</option>
+                        </select>
+                     </p>
+                     <p>
+                        <label>Кузов</label>
+                        <select>
+                           <option>Седан</option>
+                        </select>
+                     </p>
+                     <p>
+                        <label>Привод</label>
+                        <select>
+                           <option>Передний</option>
+                        </select>
+                     </p>
+                     <p>
+                        <label>Мощность</label>
+                        <input type="text" class="input_half">
+                        <input type="text" class="input_half">
+                     </p>
+                     <p>
+                        <label>Мощность</label>
+                        <input type="text">
+                     </p>
+                     <p>
+                        <label>Мощность</label>
+                        <input type="text">
+                     </p>
+                  </div>
+                  <div class=mobile_filter_button>
+                     <a href="" class="selectcar">Выбрать</a>
+                     <a href="" class="selectcar">Сбросить</a>
+                  </div>
+               </form>
+            </div>
+            <div class="big-box">
+               <form class="sort_and_num" method="get" action="{% url 'carlist' cat.id %}">
+                  <div class="sort_param">
+                     <p class="sort_card" >Сортировка
+                        <select name="sort"  class="select_sort"  onchange="this.form.submit()">
+                           <option value="Brand_and_name" {% if sort == 'Brand_and_name' %} selected {% endif %}>наименование </option>
+                           <option value="Price" {% if sort == 'Price' %} selected {% endif %}>&#8593; цена </option>
+                           <option value="-Price" {% if sort == '-Price' %} selected {% endif %}>&#8595; цена</option>
+                           
+                        </select></p>
+                        <p class="numer_card"><span>Количество</span>
+                           <select name="count" onchange="this.form.submit()">
+                              <option value="5" {% if count == 5 %} selected {% endif %}>5</option>
+                              <option value="10" {% if count == 10 %} selected {% endif %}>10</option>
+                              <option value="20" {% if count == 20 %} selected {% endif %}>20</option>
+                           </select>
+                        </p>
+                     </div>
+                  </form>
+                  <div itemscope itemtype="http://schema.org/ItemList" style="display: contents;">
+                  {% for x in carget %}
+                  {{x.CategoryID_id.NameCat}}
+                  {% for key, value in js.items %}
+                  {% if key == x.id and x.Status == 0 %}
+                  <div class="Cardcar">
+                     <div class="boxcar" itemscope itemprop="itemListElement" itemtype="http://schema.org/Product">
+                        <div class="content_card_car">
+                           <div class="name">
+                           <p itemprop="name">{{x.Brand_and_name}}</p>
+                           <meta itemprop="description" content="{{x.Brand_and_name}}">
+                        </div>
+                        <div class="description">
+                           <div>
+                              <p>{{x.get_Transmission_display}}</p>
+                              <p>{{x.get_Engine_display}}</p>
+                           </div>
+                           <div>
+                              <p>{{x.get_Car_type_display}}</p>
+                              <p>{{x.get_Drive_display}}</p>
+                           </div>
+                        </div>
+                        <div itemscope itemprop="offers" itemtype="http://schema.org/Offer" class="price">
+                           <p itemprop="price">{{x.Price}} ₽/Сутки</p>
+                            <meta itemprop="priceCurrency" content="RUB">
+                        </div>
+                        <a itemprop="url" href="{% url 'cars_detail' x.CategoryID_id x.id %}" class="selectcar">Выбрать</a>
+                     </div>
+                     <div class="fotorama_carlist fr">
+                        <div class="fotorama" data-nav="false" data-width="100%">
+                           {% for z in value %}
+                              <a itemprop="image" href="{{z}}"></a>
+                           {% endfor %}
+                        </div>
+                     </div>
+                  </div>
+               </div>
+                  {% endif %}
+                  {% endfor %}
+                  {% endfor %}
+              </div>
+               <nav class="nav_pag">
+                  <ul class="pagination">
+                      {% if is_paginated %}
+                      {% if carget.has_previous %}
+                      <li class="pagination-item ">
+                          <a href="?page={{ carget.previous_page_number }}&sort={{sort}}&count={{count}}">&#171;</a>
+                      </li>
+                      {% endif %}
+                      {% for num in carget.paginator.page_range %}
+                      {% if num == carget.number %}
+                      <li class="pagination-item pg-active">
+                          <a href="#">{{ num }}</a>
+                      </li>
+                      {% elif num > carget.number|add:'-3' and num < carget.number|add:'3' %} 
+                          <li class="pagination-item ">
+                          <a href="?page={{ num }}&sort={{sort}}&count={{count}}">{{ num }}</a>
+                          </li>
+                          {% endif %}
+                          {% endfor %}
+                          {% if carget.has_next %}
+                          <li class="pagination-item">
+                              <a href="?page={{ carget.next_page_number }}&sort={{sort}}&count={{count}}">&#187;</a>
+                          </li>
+                          {% endif %}
+                      {% endif %}
+                  </ul>
+              </nav>
+               <!-- <nav class="nav_pag">
+                  <ul class="pagination">
+                     <li class="pagination-item ">
+                        <a href="#">&#171;</a>
+                     </li>
+                     <li class="pagination-item pg-active">
+                        <a href="#">1</a>
+                     </li>
+                     <li class="pagination-item ">
+                        <a href="#">2</a>
+                     </li>
+                     <li class="pagination-item">
+                        <a href="#">3</a>
+                     </li>
+                     <li class="pagination-item">
+                        <a href="#">4</a>
+                     </li>
+                     <li class="pagination-item">
+                        <a href="#">&#187;</a>
+                     </li>
+                  </ul>
+               </nav> -->
+            </div>
+         </div>
+      </div>
+   {% endblock %}

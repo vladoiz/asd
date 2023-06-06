@@ -1,0 +1,54 @@
+{% extends 'my_admin/pattern.html' %}
+{% load static %}
+{%block title%}
+Изменить сотрудника {{worker.id}} 
+{%endblock%}
+{% block content %}
+        <section class="col-12">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{% url 'start_admin' %}">Главная</a></li>
+
+                    <li class="breadcrumb-item"><a href="{% url 'admin_companies' %}">Все компании</a></li>
+                    <li class="breadcrumb-item"><a href="{% url 'admin_company' worker.Company_id %}">Компания {{worker.Company}}</a></li>
+                    <li class="breadcrumb-item"><a href="{% url 'admin_workers' worker.Company_id %}">Сотрудники</a></li>
+                    <li class="breadcrumb-item"><a href="{% url 'admin_worker' worker.Company_id worker.id %}">Сотрудник №{{worker.id}}</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Изменение сотрудника</li> 
+                </ol>
+            </nav>
+            <h1>Изменение сотрудника </h1>
+            <form action="{% url 'admin_update_worker' worker.Company_id worker.id %}" method="POST" class="form-row border border-dark p-3">
+                {% csrf_token %}
+                <div class="form-row col-lg-6 col-12 p-lg-2 pr-0">
+                    <label for="name" class="col-sm-4 col-12 col-form-label">Имя</label>
+                    <div class="col-sm-8 col-12">
+                        <input type="text" class="form-control mb-2" id="name" name="Name" value="{{worker.Name}}" required>
+                    </div>
+                    <label for="fname" class="col-sm-4 col-12 col-form-label">Фамилия</label>
+                    <div class="col-sm-8 col-12">
+                        <input type="text" class="form-control mb-2" id="fname" name="Fname" value="{{worker.Fname}}" required>
+                    </div>
+                    <label for="tel" class="col-sm-4 col-12 col-form-label">Телефон</label>
+                    <div class="col-sm-8 col-12">
+                        <input type="tel" class="form-control mb-2" id="tel" name="Phone" value="{{worker.Phone}}" required>
+                    </div>
+                </div>
+                <div class="form-row col-lg-6 col-12 p-lg-2 pr-0">
+                    <label for="mail" class="col-sm-4 col-12 col-form-label">E-mail</label>
+                    <div class="col-sm-8 col-12">
+                        <input type="email" class="form-control mb-2" id="mail" name="Email" value="{{worker.Email}}" required>
+                    </div>
+                    <label for="company" class="col-sm-4 col-12 col-form-label">Компания</label>
+                    <div class="col-sm-8 col-12">
+                        <input type="text" class="form-control mb-2" id="company" name="Company" value="{{worker.Company}}" readonly>
+                    </div>
+                    <label for="comment" class="col-sm-4 col-12 col-form-label">Комментарий</label>
+                    <div class="col-sm-8 col-12">
+                        <textarea class="mb-2 form-control" rows="2" name="Comment">{{worker.Comment}}</textarea>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary p-2 col-lg-3 col-12 my-3">Редактировать</button>
+            </form>
+        </section>
+        <wbr>
+        {% endblock %}
